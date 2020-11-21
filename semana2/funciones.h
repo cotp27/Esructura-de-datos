@@ -1,6 +1,6 @@
 #include <iostream>
 
-using namespace std;
+using namespace std;  // std::cout<<   std::cin>>
 
 void area_poligono(int poligono){
     double l1,l2;
@@ -26,7 +26,7 @@ void area_poligono(int poligono){
     }
 }
 
-void area_poligono_switch(int poligono){
+void area_poligono_switch(int poligono){  
     // var
     double l1,l2;
 

@@ -2,7 +2,7 @@
   (cuadrado, rectangulo, triangulo) usando switch*/
 
 #include <iostream>
-#include "funciones.h"
+#include "funciones.h"  // llamar el archivo funciones
 using namespace std;
 
 int main(){
