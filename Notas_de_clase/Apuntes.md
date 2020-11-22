@@ -21,8 +21,16 @@ Las clases permiten a los programadores dividir una aplicación en piezas u obje
   1. Creamos un archivo fuente C ++ en el que ingresamos las líneas de nuestro programa
   2. Guardar este archivo
   3. Ejecutamos el programa (llamado compilador, que crea una interpretación de código máquina de este programa)
-     > g++ <nombre_del_programa>.cc –o <nombre_del_programa>
+     > g++ <nombre_del_programa>.cpp –o <nombre_del_programa>
 
   4. Otro programa, llamado enlazador (que normalmente es invocado automáticamente por el compilador), incluye cualquier función de código de biblioteca necesaria y produce el       archivo ejecutable por máquina final.
   5. Para ejecutar nuestro programa, el usuario solicita que el sistema ejecute este archivo.
      > .\<nombre_del_programa>
+# Un programa simple en C ++ 
+* Este programa ingresa dos enteros, que se almacenan en las variables x e y. Luego calcula su suma y almacena el resultado en una suma variable, y finalmente genera esta suma.
+
+* Algunas cosas sobre este programa C ++ deberían ser bastante obvias. 
+  1. Los comentarios se indican con dos barras (//). 
+  2. Los comentarios de bloque más largos están encerrados entre / * y * /. 
+  3. Las cantidades manipuladas por este programa se almacenan en tres variables enteras, x, y, y sum.
+  4. Los operadores ">>" y "<<" se utilizan para entrada y salida, respectivamente.
