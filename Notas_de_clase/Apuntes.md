@@ -117,6 +117,36 @@ Las constantes octales (base 8) se especifican prefijando el número con el díg
 
 Al declarar una variable, tenemos la opción de proporcionar una definición o valor inicial. Los nombres de las variables pueden consistir en cualquier combinación de letras, dígitos o el carácter de subrayado (`_`), pero el primer carácter no puede ser un dígito. 
 
+```cpp
+//...
+short _small__Number; // entero corto indefinido
+int octalNumber = 0400; // 400(base 8) = 256 (base 10)
+long BigNumber = 314159265L;
+//...
+```
+*Observación: Aunque es legal comenzar un nombre de variable con un guión bajo (“_”), es mejor evitar esta práctica, ya que algunos compiladores de C ++ usan esta convención para definir sus propios identificadores internos.*
+
+## Enumeraciones
+
+Una enumeración (`Enum`) es un tipo definido por el usuario que puede contener cualquier valor de un conjunto de valores discretos. Una vez definidas, las enumeraciones se comportan como un tipo integer.
+
+Un uso común de las enumeraciones es proporcionar nombres significativos a un conjunto de valores relacionados. Cada elemento de una enumeración está asociado con un valor entero. Por defecto, estos valores se cuentan desde **0**, pero también es posible definir valores constantes explícitos como se muestra a continuación.
+
+```cpp
+//#include <iostream> 
+using namespace std;
+
+int main(){
+  enum Dia {Lunes , Martes , Miercoles , Jueves , Viernes , Sabado , Domingo};  
+  Dia numero = Jueves;
+  cout<<"El dia es: " << numero << endl;
+  return 0;
+}
+```
+> El dia es: 3
+
+
+
 
 
 
