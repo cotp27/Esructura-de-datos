@@ -225,5 +225,79 @@ Estos operadores de asignación no solo brindan conveniencia de notación, sino 
 
 *Observación: Se debe tener cuidado al realizar asignaciones entre objetos agregados (matrices, cadenas y estructuras). Por lo general, el programador tiene la intención de que dicha tarea copie el contenido de un objeto al otro. Esto funciona para cadenas STL y estructuras de estilo C (siempre que tengan el mismo tipo). Sin embargo, como se discutió anteriormente, las cadenas y matrices de estilo C no se pueden copiar simplemente a través de una sola declaración de asignación.*
 
+# Flujos de control
+
+## Declaración If 
+
+```cpp
+if (condicion_logica){
+	if_sentecia;
+}	
+```
+
+```cpp
+if (condicion_logica){
+	if_sentecia;
+}else{
+	else_sentecia;
+}	
+```
+
+```cpp
+if (condicion_logica){
+	if_sentecia;
+}else if (condicion_logica){
+	else_if_sentecia;
+}else{
+	else_sentecia;
+}	
+```
+## Declaración Switch
+
+```cpp
+switch (expresion){
+	case (valor_constante_expresion):
+		sentencia;
+		break;
+	case (valor_constante_expresion):
+		sentencia;
+		break;
+	.
+	.
+	.
+	case (valor_constante_expresion):
+		sentencia;
+		break;
+	default:
+		sentencia;
+		break;
+		
+}
+```
+
+## Declaración While-Do y While
+
+```cpp
+while (condicion_logica){
+	sentencia1;
+	sentencia2;
+	.
+	.
+	.
+	sentencian;
+		
+}
+```
+
+```cpp
+do{
+	sentencia1;
+	sentencia2;
+	.
+	.
+	.
+	sentencian;
+		
+}while (condicion_logica);
 
 
