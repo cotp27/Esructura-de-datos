@@ -279,25 +279,38 @@ switch (expresion){
 
 ```cpp
 while (condicion_logica){
-	sentencia1;
-	sentencia2;
+	sentencia_1;
+	sentencia_2;
 	.
 	.
 	.
-	sentencian;
+	sentencia_n;
 		
 }
 ```
 
 ```cpp
 do{
-	sentencia1;
-	sentencia2;
+	sentencia_1;
+	sentencia_2;
 	.
 	.
 	.
-	sentencian;
+	sentencia_n;
 		
 }while (condicion_logica);
+```
 
+## Declaración While-Do y While
+```cpp
+for (type i = i_inicial ; i <= i_final ; i = i+const ){
+	sentencia_1;
+	sentencia_2;
+	.
+	.
+	.
+	sentencia_n;
+}
+```
 
+# Funciones
