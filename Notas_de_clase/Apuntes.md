@@ -149,6 +149,7 @@ int main(){
 }
 ```
 > El dia es: 3
+
 > Mi animo es: 4
 
 
