@@ -53,8 +53,28 @@ Algunas cosas sobre este programa C ++ deberían ser bastante obvias.
      El cuerpo de la función se da entre llaves ({...}), que comienzan en la línea 4 y terminan en línea 11. El programa termina cuando se ejecuta la declaración de `return` en la línea 10.
   3. Por convención, la función `main` devuelve el valor cero para indicar éxito y devuelve un valor distinto de cero para indicar falla. El archivo de inclusión `cstdlib` define la constante `EXIT SUCCESS` como `0`. Por lo tanto, la instrucción return en la línea 10 devuelve 0, lo que indica una terminación exitosa.
   4. La declaración en la línea 6 imprime una cadena usando el operador de salida (`<<`). El enunciado en la línea 7 ingresa los valores de las variables x e y utilizando el operador de entrada (`>>`). Estos valores variables podrían ser suministrados, por ejemplo, por la persona que ejecuta nuestro programa.
+  5. El nombre `std :: cout` indica que la salida se enviará a la secuencia de salida estándar (standard output stream). Hay otros dos flujos de E/S (I/O) importantes en C ++, la entrada estándar (standard input) es donde se lee típicamente la entrada y el error estándar (standard error) es donde se escribe la salida de error. Estos se denotan `std :: cin` y `std :: cerr`, respectivamente.
   
-     El nombre `std :: cout` indica que la salida se enviará a la secuencia de salida estándar (standard output stream). Hay otros dos flujos de E/S (I/O) importantes en C ++, la entrada estándar (standard input) es donde se lee típicamente la entrada y el error estándar (standard error) es donde se escribe la salida de error. Estos se denotan `std :: cin` y `std :: cerr`, respectivamente.
+     El prefijo `std ::` indica que estos objetos son de la biblioteca estándar del sistema (`standard library`). Deberíamos incluir este prefijo al referirnos a objetos de la biblioteca estándar. No obstante, es posible informar al compilador que deseamos usar objetos de la biblioteca estándar, y así omitir este prefijo, utilizando la instrucción `using` (discutimos la declaración using más adelante) como se muestra a continuación.
+
+**Asunción:** Para mantener nuestros ejemplos breves, a menudo omitimos las declaraciones include y using al mostrar código C ++. También usamos " //. . . " para indicar que se ha omitido algún código.
+
+```cpp
+#include <iostream>
+using namespace std;
+/* This program inputs two numbers x and y and outputs their sum */
+int main(){
+    //...
+    cout << "Por favor ingrese 2 numeros: ";
+    cin >> x >> y; // input x and y
+    //...
+    cout << "La suma es " << sum << endl;
+    cout << n << endl;
+    //...
+}
+```
+ 6. Observamos que la declaración en la línea 9 genera el valor de la variable `sum`, que en este caso almacena la suma calculada de `x` e `y`.
+ 7. Por defecto, la declaración de salida no produce un final de línea. El objeto especial `std :: endl` genera un carácter especial de fin de línea. Otra forma de generar un final de línea es generar el carácter de nueva línea, `\ n`.
 
   
 
