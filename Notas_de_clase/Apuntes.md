@@ -133,17 +133,25 @@ Una enumeración (`Enum`) es un tipo definido por el usuario que puede contener 
 Un uso común de las enumeraciones es proporcionar nombres significativos a un conjunto de valores relacionados. Cada elemento de una enumeración está asociado con un valor entero. Por defecto, estos valores se cuentan desde **0**, pero también es posible definir valores constantes explícitos como se muestra a continuación.
 
 ```cpp
-//#include <iostream> 
+#include <iostream> 
 using namespace std;
 
 int main(){
   enum Dia {Lunes , Martes , Miercoles , Jueves , Viernes , Sabado , Domingo};  
   Dia numero = Jueves;
   cout<<"El dia es: " << numero << endl;
+  
+  enum Animo {HAPPY = 3, SAD = 1, ANXIOUS = 4, SLEEPY = 2};
+  Animo mi_animo = ANXIOUS;
+  cout<<"Mi animo es: " << mi_animo << endl;
+  
   return 0;
 }
 ```
 > El dia es: 3
+> Mi animo es: 4
+
+
 
 
 
