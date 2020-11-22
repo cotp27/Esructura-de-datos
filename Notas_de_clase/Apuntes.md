@@ -13,15 +13,6 @@ Brevemente, podemos decir que una clase es un tipo (`type`) de dato abstracto (`
 
 Una clase también tiene la capacidad de ocultar sus datos subyacentes. Esto permite que una clase oculte los detalles de su implementación y permite a los usuarios conceptualizar la clase en términos de una interfaz bien definida. Las clases permiten a los programadores dividir una aplicación en piezas u objetos pequeños y manejables; en consecuencia los programas resultantes son más fáciles de entender y de mantener.
 
-Al igual que muchos lenguajes de programación, crear y ejecutar un programa C ++ requiere varios pasos
-  1. Creamos un archivo fuente C ++ en el que ingresamos las líneas de nuestro programa
-  2. Guardar este archivo
-  3. Ejecutamos el programa (llamado compilador, que crea una interpretación de código máquina de este programa)
-     > g++ <nombre_del_programa>.cpp –o <nombre_del_programa>
-
-  4. Otro programa, llamado enlazador (que normalmente es invocado automáticamente por el compilador), incluye cualquier función de código de biblioteca necesaria y produce el       archivo ejecutable por máquina final.
-  5. Para ejecutar nuestro programa, el usuario solicita que el sistema ejecute este archivo.
-     > .\\<nombre_del_programa>
 # Un programa simple en C ++ 
 Este programa ingresa dos enteros, que se almacenan en las variables x e y. Luego calcula su suma y almacena el resultado en una suma variable, y finalmente genera esta suma.
 ```cpp
@@ -82,4 +73,51 @@ int main(){
     > Por favor ingrese 2 numeros: 7  35
     
     > La suma es 42
+
+
+# Elementos básicos de programación
+- Los tipos fundamentales son los bloques de construcción básicos a partir de los cuales se construyen tipos más complejos.
+
+  Type  | Description
+  ------| -----------
+	bool 	|	Valor booleano (verdadero o falso)
+	char	|	carácter
+	short |		entero corto
+	int 	|	entero
+	long 	|	entero largo
+	float	|	número de punto flotante de precisión simple 
+	double|	 	número de punto flotante de doble precisión
+  
+- También hay un tipo de enumeración o `enum`, para representar un conjunto de valores discretos. Juntas, las enumeraciones y los tipos `bool`, `char` e `int` se denominan tipos integrales (`integral types`). 
+- Finalmente, hay un tipo especial `void`, que indica explícitamente la ausencia de cualquier tipo de información.
+
+## Caracteres
+Una variable `char` contiene un solo carácter. Un char en C ++ es típicamente de *8 bits*, pero el número exacto de bits utilizados para una variable char depende de la implementación particular. Al permitir diferentes implementaciones para definir el significado de los tipos básicos, como char, C ++ puede adaptar su código generado a la arquitectura de cada máquina y así lograr la máxima eficiencia. Sin embargo, esta flexibilidad puede ser una fuente de frustración para los programadores que desean escribir programas independientes de la máquina.
+
+Un `literal` es un valor constante que aparece en un programa. Los literales de caracteres están encerrados entre comillas simples, como en 'a', 'Q' y '+'. Una barra invertida (`\`) se utiliza para especificar una cantidad de literales de caracteres especiales como se muestra a continuación.
+
+Literal | Descripción
+-----|------
+'\n' |	nueva línea   			
+'\t' |	tabulación
+'\b' |	retroceso 			
+'\0' |	nulo
+'\’' |	una frase (una cita, cita simple)	
+'\"' |	doble frase (cita doble)
+'\\' |	backslash
+
+El carácter nulo, `'\ 0'`, a veces se usa para indicar el final de una cadena de caracteres. Cada carácter está asociado con un código entero. La función `int(ch)` devuelve el valor entero asociado con una variable de caracteres `ch`.
+
+## Enteros
+Una variable `int` contiene un número entero, los enteros vienen en tres tamaños: `short int`, `int` (simple) y `long int`. Por ejemplo, los números 0, 25, 98765 y -3 son de tipo int. 
+
+Se puede agregar el sufijo "`l`" o "`L`" para indicar un número entero largo, como en `123456789L`.
+
+Las constantes octales (base 8) se especifican prefijando el número con el dígito **0**, y las constantes hexadecimales (base 16) se pueden especificar prefijando el número con **0x**. Por ejemplo,  **0**400 (base 8) y **0x**100 (base 16) representan el valor entero 256 (base 10).
+
+Al declarar una variable, tenemos la opción de proporcionar una definición o valor inicial. Los nombres de las variables pueden consistir en cualquier combinación de letras, dígitos o el carácter de subrayado (`_`), pero el primer carácter no puede ser un dígito. 
+
+
+
+
 
