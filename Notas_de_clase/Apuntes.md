@@ -24,7 +24,6 @@ Al igual que muchos lenguajes de programación, crear y ejecutar un programa C +
      > .\\<nombre_del_programa>
 # Un programa simple en C ++ 
 Este programa ingresa dos enteros, que se almacenan en las variables x e y. Luego calcula su suma y almacena el resultado en una suma variable, y finalmente genera esta suma.
-
 ```cpp
 #include <cstdlib>
 #include <iostream>
@@ -32,12 +31,10 @@ Este programa ingresa dos enteros, que se almacenan en las variables x e y. Lueg
 int main(){
     int x, y;
     long int n;
-    n = 1234567891010L;
     std::cout << "Por favor ingrese 2 numeros: ";
     std::cin >> x >> y; // input x and y
     int sum = x + y; // compute their sum
     std::cout << "La suma es " << sum << std::endl;
-    std::cout << n << std::endl;
     return EXIT_SUCCESS; // terminate successfully
 }
 ```
@@ -81,6 +78,8 @@ int main(){
     > .\\<nombre_del_programa>
     
     de forma interactiva, es decir, con el usuario ingresando valores cuando se le solicite, la salida de este programa aparecerá como se muestra a continuación. 
-
   
+    > Por favor ingrese 2 numeros: 7  35
+    
+    > La suma es 42
 
