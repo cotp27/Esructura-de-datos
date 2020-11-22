@@ -21,7 +21,7 @@ Al igual que muchos lenguajes de programación, crear y ejecutar un programa C +
 
   4. Otro programa, llamado enlazador (que normalmente es invocado automáticamente por el compilador), incluye cualquier función de código de biblioteca necesaria y produce el       archivo ejecutable por máquina final.
   5. Para ejecutar nuestro programa, el usuario solicita que el sistema ejecute este archivo.
-     > .\<nombre_del_programa>
+     > .\\<nombre_del_programa>
 # Un programa simple en C ++ 
 Este programa ingresa dos enteros, que se almacenan en las variables x e y. Luego calcula su suma y almacena el resultado en una suma variable, y finalmente genera esta suma.
 
@@ -75,6 +75,12 @@ int main(){
 ```
  6. Observamos que la declaración en la línea 9 genera el valor de la variable `sum`, que en este caso almacena la suma calculada de `x` e `y`.
  7. Por defecto, la declaración de salida no produce un final de línea. El objeto especial `std :: endl` genera un carácter especial de fin de línea. Otra forma de generar un final de línea es generar el carácter de nueva línea, `\ n`.
+ 8. Si se ejecuta el programa, escribiendo en la consola
+    > g++ <nombre_del_programa>.cpp –o <nombre_del_programa>
+    
+    > .\\<nombre_del_programa>
+    
+    de forma interactiva, es decir, con el usuario ingresando valores cuando se le solicite, la salida de este programa aparecerá como se muestra a continuación. 
 
   
 
