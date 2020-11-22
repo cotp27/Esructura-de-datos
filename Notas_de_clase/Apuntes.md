@@ -29,7 +29,7 @@ Las clases permiten a los programadores dividir una aplicación en piezas u obje
 # Un programa simple en C ++ 
 * Este programa ingresa dos enteros, que se almacenan en las variables x e y. Luego calcula su suma y almacena el resultado en una suma variable, y finalmente genera esta suma.
 
-```c++
+```cpp
 #include <cstdlib>
 #include <iostream>
 /* This program inputs two numbers x and y and outputs their sum */
