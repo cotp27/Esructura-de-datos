@@ -16,3 +16,13 @@
 Brevemente, podemos decir que una clase es un tipo (type) de dato (TAD) definido por el usuario que encapsula muchos mecanismos importantes, como la inicialización garantizada, la conversión implícita de tipos, el control de la gestión de la memoria, la sobrecarga del operador y el polimorfismo (que son temas importantes que veremos más adelante en este curso). 
 Una clase también tiene la capacidad de ocultar sus datos subyacentes. Esto permite que una clase oculte los detalles de su implementación y permite a los usuarios conceptualizar la clase en términos de una interfaz bien definida.
 Las clases permiten a los programadores dividir una aplicación en piezas u objetos pequeños y manejables. Los programas resultantes son más fáciles de entender y más fáciles de mantener.
+
+* Al igual que muchos lenguajes de programación, crear y ejecutar un programa C ++ requiere varios pasos.
+  1. Creamos un archivo fuente C ++ en el que ingresamos las líneas de nuestro programa
+  2. Guardar este archivo
+  3. Ejecutamos el programa (llamado compilador, que crea una interpretación de código máquina de este programa)
+     > g++ <nombre_del_programa>.cc –o <nombre_del_programa>
+
+  4. Otro programa, llamado enlazador (que normalmente es invocado automáticamente por el compilador), incluye cualquier función de código de biblioteca necesaria y produce el       archivo ejecutable por máquina final.
+  5. Para ejecutar nuestro programa, el usuario solicita que el sistema ejecute este archivo.
+     > .\<nombre_del_programa>
