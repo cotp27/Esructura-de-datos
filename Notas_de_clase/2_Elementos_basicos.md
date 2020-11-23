@@ -296,3 +296,5 @@ Dado que algunas funciones de la biblioteca requieren las viejas cadenas de esti
 STL proporciona muchos otros operadores de cadenas, incluidos los operadores para extraer, buscar y reemplazar subcadenas.
 
 
+
+
