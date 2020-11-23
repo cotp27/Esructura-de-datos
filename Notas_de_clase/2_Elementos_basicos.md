@@ -57,6 +57,7 @@ Un uso común de las enumeraciones es proporcionar nombres significativos a un c
 
 ```cpp
 #include <iostream> 
+
 using namespace std;
 
 int main(){
@@ -84,66 +85,214 @@ Como sucede con los enteros, C ++ deja sin definir el número exacto de bits en 
 
 La notación científica o exponencial puede especificarse usando `e` o `E` para separar la mantisa del exponente, como en 3.14**E**5, lo que significa 3.14 × 10^5. Para forzar que un literal sea flotante, se agregua el sufijo `f` o `F`, como en 2.0**f** o 1.234e-3**F**.
 
+## Punteros
+Cada variable se almacena en la memoria de la computadora en algún lugar  o dirección (*address*). Un **puntero** es una variable que contiene el valor de dicha dirección. 
 
+Dado un tipo `T`, el tipo `T*` denota un puntero a una variable de tipo `T`. Por ejemplo, `int*` denota un puntero a un entero.
 
-# Expresiones
+Se utilizan dos operadores esenciales para manipular punteros. 
 
-Una expression combina variables y literales con operadores para crear nuevos valores.
+	`&`:  Devuelve la dirección de memoria de la variable apuntada,
+	
+	`*`:  Devuelve el valor contenido en la dirección de memoria de la variable apuntada.
 
-*Observación: 
- a) En todo momento, usamos var para denotar una variable o cualquier cosa a la que se le pueda asignar un valor. 
- b) Usamos exp para denotar una expresión y type para denotar un tipo.*
-
-### Operadores Aritmeticos
-
-Operador  | Descripción
-----------|-----------
-exp + exp |  adición
-exp - exp |   sustracción
-exp * exp |  multiplicación
-exp / exp |  división
-exp % exp |  modular
-
-### Operadores de incremento y decremento
-
-Operador  | Descripción
-----------|-----------
-var ++ |		post incremento
-var −− 	|	post decremento
-++ var 	|	pre incremento
-−− var 	|	pre decremento
-
-### Operadores relacionales y lógicos	
-
-Operador  | Descripción
-----------|-----------
-exp < exp   |    menor que
-exp > exp   |    mayor que
-exp <= exp  |    menor o igual
-exp > = exp |    mayor o igual que
-exp == exp  |    igual a
-exp ! = exp |    no es igual a
-!exp       |    	 lógico no
-exp && exp  |   	 lógico y 
-exp || exp  |   	 lógico o
-
-Los operadores `&&` y `||` evaluan secuencialmente de izquierda a derecha.
-
-### Operadores de Asignación
-
-Además del operador de asignación familiar (`=`), C ++ incluye una forma especial para cada uno de los operadores binarios aritméticos (`+`, `-`, `*`, `/`, `%`) y cada uno de los operadores binarios binarios (`&`, `|`, `^`, `<<`, `>>`), que combina una operación binaria con asignación. Por ejemplo, la declaración `n + = 2` significa `n = n + 2`. Algunos ejemplos se muestran a continuación.
 ```cpp
-//..
-{//..
-int i =10;
-int j =5;
-string s="yes";
-i -= 4; // i = i - 2
-j *= -2;// j= j * 2
-s += "or no";// s= s + "or no"  
-//...
+#include <cstdlib>
+#include <iostream>
+
+using namespace std; 
+
+int main(){
+    char ch = 'Q';  //  ch es una variable char
+    char* p = &ch;  //  p es un puntero de tipo char que apunta a la direccion de memoria de ch
+    cout <<"*p = "<< *p << '\n'; // se imprime el valor contenido en p  
+    ch = 'Z';   // ch cambia de valor   
+    cout <<"*p = "<<  *p << '\n';   // el valor contenido en p es Z
+    *p = 'X';       // el valor contenido en p es X
+    cout <<"ch = "<< ch;     // el valor de ch es X
+    return 0;
 }
 ```
-Estos operadores de asignación no solo brindan conveniencia de notación, sino que también pueden ser más eficientes para ejecutar. 
+> *p = Q
 
-*Observación: Se debe tener cuidado al realizar asignaciones entre objetos agregados (matrices, cadenas y estructuras). Por lo general, el programador tiene la intención de que dicha tarea copie el contenido de un objeto al otro. Esto funciona para cadenas STL y estructuras de estilo C (siempre que tengan el mismo tipo). Sin embargo, como se discutió anteriormente, las cadenas y matrices de estilo C no se pueden copiar simplemente a través de una sola declaración de asignación.*
+> *p = Z
+
+> ch = X
+
+Veremos que los punteros son muy útiles cuando se construyen estructuras de datos donde los `objetos` están vinculados entre sí mediante el uso de punteros. Los punteros no necesitan apuntar solo a tipos fundamentales, como `char` e `int`; también pueden apuntar a tipos complejos e incluso a funciones. De hecho, la popularidad de C ++ se debe en parte a su capacidad para manejar entidades de bajo nivel como punteros.
+
+Es útil tener un valor de puntero que apunte a nada, es decir, un `null pointer`. Por convención, a dicho puntero se le asigna el valor cero. Un intento de desreferenciar un puntero nulo da como resultado un error de tiempo de ejecución. 
+
+Todas las implementaciones de C ++ definen un símbolo especial `NULL`, que es igual a cero. Esta definición se activa insertando la declaración `#include <cstdlib>` al comienzo del programa.
+
+Mencionamos anteriormente que el tipo especial `void` se usa para indicar que no hay información de tipo. Aunque no podemos declarar que una variable sea de tipo void, podemos declarar que un puntero es de tipo `void*`. Tal puntero puede apuntar a una variable de cualquier tipo. Dado que el compilador no puede verificar la exactitud de tales referencias, se desaconseja el uso de punteros void*, excepto en casos inusuales donde se necesita acceso directo a la memoria de la computadora.
+
+*Observación: Tenga cuidado al declarar dos o más punteros en la misma línea. El operador `*` se une con el nombre de la variable, no con el nombre del tipo. Considere la siguiente declaración engañosa.*
+
+```cpp
+int* x, y, z;
+```
+Esto declara una variable de puntero `x`, pero las otras dos variables son enteros simples. La forma más sencilla de evitar esta confusión es declarar una variable por declaración.
+
+
+## Arrays (matrices)
+
+### Unidimensionales
+Una Array (matriz) es una colección de elementos del mismo tipo. Dado cualquier tipo `T` y una constante `N`, una variable de tipo `T[N]` contiene una matriz de `N` elementos, cada uno de tipo `T`. 
+
+Cada elemento de la matriz está referenciado por su índice, es decir, un número de **0 a N-1.**
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    double f[5];
+    int m[10];
+    f[4]=2.5;
+    f[0]=-1;
+    f[1]=6;
+    f[2]=10;
+    f[3]=20;
+    m[2]=4;
+    m[1]=1.2;
+    cout << f[m[2]]<<'\n';
+    cout << f[3]+f[m[2]]<<'\n';
+    cout << m[1];
+    return 0;
+}
+```
+> 2.5
+
+> 22.5
+
+> 1
+
+Una vez declarado, no es posible aumentar el número de elementos en una matriz. Además, C ++ no proporciona una comprobación de tiempo de ejecución integrada para la suscripción de matrices fuera de los límites. Esta decisión es consistente con la filosofía general de C ++ de no introducir ninguna característica que ralentice la ejecución de un programa. La indexación de una matriz fuera de sus límites declarados es un error de programación común. Tal error a menudo ocurre "silenciosamente", y solo mucho después se nota sus efectos.
+
+Veremos, mas adelante, que el tipo de vector de la Biblioteca de plantillas estándar (STL) de C ++ proporciona muchas de las capacidades de un tipo de matriz más completo, incluida la verificación del índice en tiempo de ejecución y la capacidad de cambiar dinámicamente el tamaño de la matriz.
+
+### Bidimensionales
+
+Una matriz bidimensional se implementa como un “array of arrays” ("matriz de matrices"). Por ejemplo, `int A[15] [30]` declara que `A` es una matriz de **30 objetos**, cada uno de los cuales es una matriz de **15 enteros**. Un elemento en dicha matriz se indexa como `A[i][j]`, donde `i` está en el rango de 0 a 14 y `j` está en el rango de 0 a 29.
+
+
+
+Al declarar una matriz, podemos inicializar sus valores encerrando los elementos entre llaves ({...}). Al hacerlo, no tenemos que especificar el tamaño de la matriz, ya que el compilador puede resolver esto.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int A[2][3];
+    int a[] = {10, 11, 12, 13};    // declaro e incializo a[4]
+    bool b[] = {false, true};      // declaro e incializo b[2] 
+    char c[] = {'c', 'a', 't'};    // declaro e incializo c[3]
+    A[0][0]=0;
+    A[1][0]=1;
+    A[0][1]=2;
+    A[1][1]=3;
+    A[0][2]=4;
+    A[1][2]=5;
+    cout << A[2][3]<<endl;  // fuera del rango devuelve 0
+    cout << A[1][2]<<endl;
+    cout << b[1]<<endl;
+    cout << c[2]<<endl;
+    return 0;
+}
+```
+> 0
+
+> 5
+
+> true
+
+> t
+
+Del mismo modo que es posible declarar una matriz de enteros, es posible declarar una matriz de punteros a enteros. Por ejemplo, `int* r[17]` declara una matriz `r` que consta de 17 punteros a objetos de tipo `int`. Una vez inicializado, podemos desreferenciar un elemento de esta matriz usando el operador `*`, por ejemplo, `*r[16]` es el valor del entero al que apunta el último elemento de esta matriz.
+
+### Punteros y Arrays
+
+Existe una conexión interesante entre las matrices y los punteros, que `C ++` heredó del lenguaje de programación `C`. El nombre de una matriz es equivalente a un puntero, al elemento inicial de la matriz y viceversa. 
+
+En el ejemplo a continuación, `c` es una matriz de caracteres,  `p` y `q` son punteros al primer elemento de c. Sin embargo, se comportan esencialmente igual.
+
+```cpp
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    char c[] = {'c', 'a', 't'};  
+    char* p = c; // p apunta a c[0] 
+    char* q = &c[0]; // q apunta a c[0] 
+    cout << c[2] <<'\n'<< p[2] <<'\n' << q[0]; 
+    return 0;
+}
+```
+> t
+
+> t
+
+> c
+
+*Observación: Esta equivalencia entre nombres de matriz y punteros puede ser confusa, pero ayuda a explicar muchos de los misterios aparentes de C ++. Por ejemplo, dados dos arreglos c y d, la comparación (c == d) no prueba si el contenido de los dos arreglos es igual. Más bien compara las direcciones de sus elementos iniciales, que probablemente no sea lo que el programador tenía en mente. Si es necesario realizar operaciones en matrices completas (como copiar una matriz a otra), es una buena idea usar la **clase vector**, que forma parte de la Biblioteca de plantillas estándar (STL) de C ++.*
+
+## String
+
+Un literal de cadena (string), como "Hello World", se representa como una matriz de longitud fija de caracteres que terminan con el carácter nulo. 
+
+Las cadenas de caracteres representadas de esta manera se llaman cadenas de estilo `C`, ya que se heredaron de `C`. Desafortunadamente, esta representación por sí sola no proporciona muchas operaciones de cadena, como concatenación y comparación. Asimismo, posee todas las peculiaridades de las matrices de C++, como se mencionó anteriormente.
+
+Por esta razón, C++ proporciona un `Type` `string` (cadena) como parte de su Biblioteca de plantillas estándar (STL). Cuando necesitamos distinguir, llamamos a estas `STL strings`. 
+
+Para usar cadenas STL es necesario incluir el archivo de encabezado `#incliude <string>`. Dado que las cadenas STL son parte del estándar `namespace` (el espacio de nombres estándar), su nombre completo es `std :: string`.
+
+*Observación: Al agregar la declaración `using std :: string`, informamos al compilador que queremos acceder a esta definición directamente, omitiendo el prefijo `std ::`.*
+
+Las cadenas STL se pueden concatenar usando el operador `+`, se pueden comparar entre sí usando el orden lexicográfico (o de diccionario), y se pueden ingresar y salir usando los operadores `>>` y `<<`, respectivamente.
+
+```cpp
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+using std::string;
+
+int main(){
+    string s = "to be";
+    string t = "not " + s;      // t = “not to be”
+    string u = s + " or " + t;  // u = “to be or not to be”
+    if (s > t)                  // true: “to be” > “not to be”
+    cout << u << '\n';                  // outputs “to be or not to be”
+
+    string s1 = "John"; // s = “John”
+    int i = s1.size(); // i = 4
+    cout << i << '\n';
+    char c = s1[3]; // c = ’n’
+    cout << c << '\n';
+    s1 += " Smith"; // now s = “John Smith”
+    cout << s1 << '\n';
+    return 0;
+}
+```
+> to be or not to be
+
+> 4
+
+> n
+
+> John Smith
+
+También hay otras operaciones de cadena STL. Por ejemplo, podemos agregar una cadena a otra usando el operador + =. Además, las cadenas pueden indexarse como matrices y el número de caracteres en una cadena s viene dado por `s.size()`.
+
+Dado que algunas funciones de la biblioteca requieren las viejas cadenas de estilo C, existe una función de conversión `s.c_str()`, que devuelve un puntero a una cadena de estilo C.
+
+STL proporciona muchos otros operadores de cadenas, incluidos los operadores para extraer, buscar y reemplazar subcadenas.
+
+
