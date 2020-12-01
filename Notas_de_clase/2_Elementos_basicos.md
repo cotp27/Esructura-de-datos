@@ -289,12 +289,8 @@ int main(){
 
 > John Smith
 
-También hay otras operaciones de cadena STL. Por ejemplo, podemos agregar una cadena a otra usando el operador + =. Además, las cadenas pueden indexarse como matrices y el número de caracteres en una cadena s viene dado por `s.size()`.
+También hay otras operaciones de cadena STL. Por ejemplo, podemos agregar una cadena a otra usando el operador `+=`. Además, las cadenas pueden indexarse como matrices y el número de caracteres en una cadena s viene dado por `s.size()`.
 
 Dado que algunas funciones de la biblioteca requieren las viejas cadenas de estilo C, existe una función de conversión `s.c_str()`, que devuelve un puntero a una cadena de estilo C.
 
 STL proporciona muchos otros operadores de cadenas, incluidos los operadores para extraer, buscar y reemplazar subcadenas.
-
-
-
-
