@@ -1,6 +1,6 @@
 # Punteros
 
-# Estrucuturas (struct)
+# Estructuras (struct)
 
 Una estructura es útil para almacenar una agregación de elementos. A diferencia de una matriz, los elementos de una estructura pueden ser de diferentes tipos. 
 
@@ -116,6 +116,14 @@ P3 -> nro_de_viaje_frec = "Ninguno";
 ```
 Sería natural preguntarse si podemos inicializar los miembros utilizando la notación de llaves (`{...}`) utilizadas anteriormente. La respuesta es **no**, pero veremos mas adelante otra forma más conveniente de inicializar miembros cuando analicemos clases y constructores.
 
-Este nuevo objeto de Pasajero continúa existiendo en el almacén gratuita hasta que se **elimina explícitamente**, este proceso se realiza utilizando el operador `delete`, que destruye el objeto y devuelve su espacio al almacén gratuita.
+Este nuevo objeto de Pasajero continúa existiendo en el almacén gratuita hasta que se **elimina explícitamente**, este proceso se realiza utilizando el operador `delete`, que destruye el objeto y devuelve su espacio al almacén gratuito.
+
+```c++
+//...
+delete P3;
+//...
+```
+El operador `delete` solo debe aplicarse a los objetos que se han asignado a través de `new`.
+
 
 
