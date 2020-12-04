@@ -1,5 +1,3 @@
-# Punteros
-
 # Estructuras (struct)
 
 Al contrario de los arrays, las **estructuras** nos permiten agrupar varios tipos de datos, permitiendo manipularlos todos juntos, usando un mismo identificador, o cada uno por separado.
@@ -50,6 +48,8 @@ int main(){
     return 0;
 }
 ```
+El resultado, es el siguiente:
+
 > Juan Secada
 
 > 2000
