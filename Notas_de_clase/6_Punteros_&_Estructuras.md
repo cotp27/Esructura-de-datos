@@ -2,6 +2,114 @@
 
 # Estructuras (struct)
 
+Al contrario de los arrays, las **estructuras** nos permiten agrupar varios tipos de datos, permitiendo manipularlos todos juntos, usando un mismo identificador, o cada uno por separado.
+
+Las estructuras son llamadas también muy a menudo **registros**, o en inglés **records**. Tienen muchos aspectos en común con los *registros usados en bases de datos*. Y siguiendo la misma analogía, cada elemento de una estructura se denomina a menudo **campo** (field).
+
+El identificador de la estructura es un nombre (opcional) para referirse a la estructura. Los **objetos de la estructura** son objetos declarados con el tipo de la estructura, y su inclusión también es opcional. Sin bien, aún siendo ambos opcionales, al menos uno de estos elementos debe existir.
+
+En el interior de una estructura, entre las llaves, se pueden definir todos los elementos que consideremos necesarios, del mismo modo que se declaran los objetos.
+
+```c++
+struct [<identificador>]{
+        [<Tipo_1> <nombre_elemento_1>];    // elemento de la estructura o campo
+        .
+        .
+        .
+        [<Tipo_n> <nombre_elemento_n>];
+} [<objeto_estructura_1>], ... , [<objeto_estructura_p>];   // objetos de la estructura
+```
+
+Las estructuras pueden referenciarse completas, usando su nombres y también se puede acceder a los elementos definidos en el interior de la estructura, usando el operador de selección `.`.
+
+Una vez definida una estructura, es decir, si hemos especificado un nombre para ella, se puede usar igual que cualquier otro tipo en C++. Esto significa que se pueden declarar más objetos del tipo estructura en cualquier parte del programa. Asimismo, en C++ la palabra **struct** es opcional en la declaración de objetos, al contrario de lo que sucede en C, en el que es obligatorio usarla.
+
+```c++
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+struct Persona {
+        char Nombre[65]; 
+        char Direccion[65]; 
+        int AnyoNacimiento; 
+} P1, P2;
+    
+int main(){
+    
+    Persona P1 = {"Juan Secada", "Callao", 1984};
+    cout << P1.Nombre<<endl;  // acceso al acmpo nombre de P1
+
+    Persona P2 = {"NN", "Lima", 2000};
+    cout << P2.AnyoNacimiento<<endl;
+
+    Persona P3 = {"Juan", "Trujillo", 1990};
+    cout << P3.Direccion<<endl;
+
+    return 0;
+}
+```
+> Juan Secada
+
+> 2000
+
+> Trujillo
+
+En este ejemplo se define la **estructura Persona** y declara a **P1** como un **objeto** de ese tipo. Para acceder al campo *nombre* de **P1**, por ejemplo para visualizarlo, usamos la expresión:
+
+```c++
+cout << P1.Nombre<<endl;  
+```
+
+## Funciones como elementos de la estructura
+
+C++, permite incluir **funciones** en el interior de las estructuras. Normalmente estas funciones tienen la misión de manipular los datos incluidos en la estructura y su uso está muy relacionado con la *programación orientada a objetos*.
+
+Aunque esta característica se usa casi exclusivamente con las **clases**, como veremos más adelante, también puede usarse en las estructuras. De hecho, en C++, *las diferencias entre estructuras y clases son muy tenues*.
+
+Dos funciones muy particulares son las de inicialización o **constructor** y la de finalización o **destructor**. Veremos con más detalle estas funciones cuando asociemos las estructuras y los punteros.
+	
+* El constructor es una **función sin tipo de retorno** y **con el mismo nombre de la estructura**.
+* El destructor tiene la misma forma, salvo que el nombre va precedido el símbolo `~`.
+
+Veamos un ejemplo sencillo para ilustrar el uso de constructores:
+
+Forma 1
+```c++
+struct Punto {
+        int x, y;
+        Punto () {x=0; y=0;};  // constructor 
+        
+} Punto1, Punto2;
+```
+
+Forma 2
+```c++
+struct Punto {
+        int x, y;
+        Punto () // declaracion del constructor 
+        
+} Punto1, Punto2;
+
+//definicion del constructor, fuera de la estructura
+Punto::Punto () {
+        x=0; 
+        y=0;
+}
+```
+Si no usáramos un constructor, los valores de `x` y `y` para `Punto1` y `Punto2` estarían indeterminados o tomarian valores constantes por defecto (según sea la versión de C++). Con las estructuras éste será el caso más habitual, dado que **si necesitamos usar constructores para asignar valores iniciales**, esto será mucho más lógico al usar **clases** que **estructuras**.
+
+*Observación: Se menciona, sólo a título de información, que el *constructor no tiene por qué ser único*. Se pueden definir varios constructores, pero veremos esto mucho mejor y con más detalle cuando veamos las **clases**.*
+
+Usando constructores nos aseguramos los valores iniciales para los elementos de la estructura. Veremos que esto puede ser una gran ventaja, sobre todo cuando combinemos estructuras con punteros, mas adelante.
+También podemos incluir otras funciones, que se declaran y definen como las funciones que ya conocemos.
+
+
+
+
+
+
 Una estructura es útil para almacenar una agregación de elementos. A diferencia de una matriz, los elementos de una estructura pueden ser de diferentes tipos. 
 
 Cada miembro (**member**) o campo (**field**), de una estructura se denomina por un nombre dado. Por ejemplo, considere la siguiente estructura para almacenar 
