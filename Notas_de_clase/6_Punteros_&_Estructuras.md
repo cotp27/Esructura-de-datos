@@ -102,8 +102,140 @@ Si no usáramos un constructor, los valores de `x` y `y` para `Punto1` y�
 
 *Observación: Se menciona, sólo a título de información, que el *constructor no tiene por qué ser único*. Se pueden definir varios constructores, pero veremos esto mucho mejor y con más detalle cuando veamos las **clases**.*
 
-Usando constructores nos aseguramos los valores iniciales para los elementos de la estructura. Veremos que esto puede ser una gran ventaja, sobre todo cuando combinemos estructuras con punteros, mas adelante.
-También podemos incluir otras funciones, que se declaran y definen como las funciones que ya conocemos.
+Usando constructores aseguramos los valores iniciales para los elementos de la estructura. Veremos que esto puede ser una gran ventaja, sobre todo cuando combinemos estructuras con punteros, mas adelante. También podemos incluir otras funcioneso o **Métodos**, que se declaran y definen como las funciones que ya conocemos. Veamos un ejemplo,
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+struct Pareja {
+        int A, B;
+	Pareja () {A=-1; B=-1;}; // constructor
+	int LeeA () {return A;}; // funcion interior a la estructura Pareja
+	int LeeB (); // funcion interior a la estructura Pareja
+	void GuardaA (int n) {A = n}; // método interior a la estructura Pareja
+	void GuardaB (int); // método interior a la estructura Pareja
+} Par;
+//Definicion externa de funciones y/o metodos de la estructura Pareja
+int Pareja :: LeeB () {
+	return B;
+}; 
+
+void Pareja :: GuardaB (int n) {
+	B = n;
+}; 
+
+int main(){
+    
+    Par.GuardaA(12);
+    Par.GuardaB(60);
+    cout << Par.LeeA()<<endl;
+    cout << Par.LeeB()<<endl;
+    
+    return 0;
+}
+```
+En este ejemplo podemos ver cómo se define una estructura con dos campos enteros, y dos funciones para modificar y leer sus valores. El ejemplo es muy simple, pero las funciones que guardan valores se pueden elaborar para que no permitan determinados valores, o para que hagan algún tratamiento de los datos. Por supuesto se pueden definir otras funciones y también constructores más elaborados e incluso, redefinir operadores. Y en general, las estructuras admiten cualquiera de las características de las **clases**, siendo en muchos aspectos equivalentes. Veremos estas características cuando estudiemos las **clases**, y recordaremos cómo aplicarlas a las estructuras.
+
+De un modo parecido al que se inicializan los arrays, se pueden inicializar estructuras, tan sólo hay que tener cuidado con las estructuras anidadas. Por ejemplo:
+
+```c++
+//...
+struct A{
+	int i, j, k;
+}
+
+struct B{
+	int x;
+	struct C{
+		char c;
+		char d;
+	} y;
+	int z;
+};
+
+int main(){
+	A ejemploA = {10, 20, 30};
+	B ejemploB = {10, {'a', 'b'}, 20};
+	//...
+}
+```
+Cada nueva estructura anidada deberá inicializarse usando la pareja correspondiente de llaves "{}", tantas veces como sea necesario.
+
+## Asignación de estructuras
+
+La asignación de estructuras está permitida, pero sólo entre **objetos del mismo tipo de estructura**, (salvo que se usen constructores), y funciona como la intuición nos dice que debe hacerlo. Por ejemplo,
+
+```c++
+//...
+struct Punto {
+        int x, y;
+        Punto () {x=0; y=0;};  // constructor 
+        
+} Punto1, Punto2;
+
+int main(){
+	Punto1.x = 10;
+	Punto1.y = 12;
+	Punto2 = Punto1;
+	//...
+}
+```
+La línea `Punto2 = Punto1`; equivale a `Punto2.x = Punto1.x;` y  `Punto2.y = Punto1.y;`.  
+
+Quizás exista la intrigado por el comentario anterior, que adelantaba que se pueden asignar estructuras diferentes, siempre que se usen los constructores adecuados. Esto, en realidad, se puede extender a cualquier tipo, no sólo a estructuras. Por ejemplo, definiendo el constructor adecuado, podemos asignar un entero a una estructura. Veamos cómo hacer esto.
+
+Hasta ahora, *los constructores que hemos visto no usaban argumentos*, pero eso no significa que no puedan tenerlos. Crearemos como ejemplo, una estructura para manejar números complejos. Un número complejo está compuesto por dos valores reales, el primero contiene lo que se llama la parte real y el segundo la parte imaginaria.
+```c++
+struct Complejo{
+	double real, imaginario;
+}
+```
+Esta estructura es suficiente para muchas de las cosas que podemos hacer con números imaginarios, pero aprovechando que podemos crear funciones, añadiremos algunas que hagan de una forma más directa cosas que de otro modo requieren añadir código externo. Por ahora nos limitaremos a añadir unos cuantos constructores. El primero es el más lógico: un constructor por defecto:
+```c++
+struct Complejo{
+	double real, imaginario;
+	Complejo () {real = 10; imaginario = 0;};
+}
+```
+Este construtor se usará, por ejemplo, si declaramos un array:
+```c++
+//...
+int main(){
+	Complejo complex[10];
+//...
+}
+```
+El constructor por defecto será llamado para cada elemento de *complex*, aunque no aparezca tal llamada en ningún punto del programa. Otro constructor nos puede servir para asignar un valor a partir de dos números:
+```c++
+struct Complejo{
+	double real, imaginario;
+	Complejo () {real = 10; imaginario = 0;};
+	Complejo (double r, double i) {real = r; imaginario = i;};
+}
+```
+Mediante este constructor podemos asignar valores iniciales en la sgte. declaración:
+```c++
+//...
+int main(){
+	Complejo complex[10];
+	Complejo complex1(10.23 , 213.22);
+//...
+}
+```
+Los números reales se consideran un subconjunto de los imaginarios, en los que la parte imaginaria vale cero. Esto nos permite crear otro constructor que sólo admita un valor real:
+```c++
+struct Complejo{
+	double real, imaginario;
+	Complejo () {real = 10; imaginario = 0;};
+	Complejo (double r, double i) {real = r; imaginario = i;};
+	Complejo (double r) {real = r;imaginario = 0;};
+}
+```
+Este constructor nos permite, como en el caso anterior, inicializar un valor de un complejo en la declaración, pero también nos permite asignar un valor `double` a un complejo, y por el sistema de promoción automático, también podemos asignar valores enteros o en punto flotante:
+
+
 
 
 
