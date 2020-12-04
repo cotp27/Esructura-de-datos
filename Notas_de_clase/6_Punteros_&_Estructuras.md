@@ -233,9 +233,95 @@ struct Complejo{
 	Complejo (double r) {real = r;imaginario = 0;};
 }
 ```
-Este constructor nos permite, como en el caso anterior, inicializar un valor de un complejo en la declaración, pero también nos permite asignar un valor `double` a un complejo, y por el sistema de promoción automático, también podemos asignar valores enteros o en punto flotante:
+Este constructor nos permite, como en el caso anterior, inicializar un valor de un complejo en la declaración, pero también nos permite asignar un valor `double` a un complejo, y por el sistema de conversión automático, también podemos asignar valores enteros o en punto flotante:
+```c++
+//...
+int main(){
+	Complejo complex[10];
+	Complejo complex1(10.23 , 213.22);
+	Complejo complex2 = 1222.21;
+	int x = 10;
+	Complejo complex3 = x;
+//...
+```
+Este tipo de constructores se comportan como *conversores de tipo*, nada nos impide crear constructores con cualquier tipo de parámetro, y tales constructores se podrán usar para convertir cualquier tipo al de nuestra estructura.
 
+## Arrays de estructuras
 
+La combinación de las estructuras con los arrays proporciona una potente herramienta para el almacenamiento y manipulación de datos.
+```c++
+struct Persona {
+        char Nombre[65]; 
+        char Direccion[65]; 
+        int AnyoNacimiento; 
+} Grupo[200];
+```
+Vemos en este ejemplo lo fácil que podemos declarar el array Grupo que contiene los datos relativos a doscientas personas. Asimismo, podemos acceder a los datos de cada uno de ellos:
+```c++
+//...
+cout << Grupo[25].Dreccion;
+//...
+```
+O asignar los datos de un elemento de Grupo a otro:
+```c++
+//...
+Grupo[0] = Grupo[99];
+//...
+```
+## Estructuras anidadas
+También está permitido anidar estructuras, con lo cual se pueden conseguir superestructuras muy elaboradas.
+```c++
+
+//...
+struct Direccion{
+	char calle[64], puerta[3], codigo_postal[6], ciudad[32];
+	int piso , portal;
+};
+
+struct Persona{
+	struct Nombre{
+		char nombre[32], apellido[64];
+	}NombreCompleto;
+	Direccion direccion;
+	char telefono[10];
+};
+//...
+```
+En general, no es una práctica corriente definir estructuras dentro de estructuras, ya que tienen un ámbito local, y para acceder a ellas se necesita hacer referencia a la estructura más externa. Por ejemplo para declarar un objeto del tipo `Nombre` hay que utilizar el operador de acceso `::`, es decir,
+```c++
+Persona :: Nombre Nombre1; 
+```
+Sin embargo para declarar un objeto de tipo `Direccion` basta con declararla, es decir,
+```c++
+Direccion direccion1;
+```
+## Estructuras anónimas
+
+Anteriormente se comentó que, al hablar sobre la sintaxis de las declaraciones de estructuras, que debe aparecer o bien el identificador de estructura, o bien declararse algún objeto de ese tipo en la declaración. Bien, eso no es del todo cierto. Hay situaciones donde se pueden omitir ambos identificadores.
+
+Una **estructura anónima** es la que carece de identificador de tipo de estructura y de declaración de objetos del tipo de estructura.
+
+```c++
+struct Conocida{
+	struct {
+		int x, y;
+	};
+	int z;
+};
+```
+Para acceder a los campos `x` o `y` se usa la misma forma que para el campo `z`:
+```c++
+//...
+Conocida.x = 0;
+Conocida.y = 0;
+Conocida.z = 0;
+//...
+```
+Pero, ¿cual es la utilidad de esto? 
+
+Pues, la verdad, no mucha, al menos cuando se usa con estructuras. En el tema de uniones puede resultar muy útil.
+
+El método usado para declarar la estructura dentro de la estructura es la **forma anónima**, como se ve no tiene identificador de tipo de estructura ni de campo. El único lugar donde es legal el uso de estructuras anónimas es en el interior de estructuras y uniones.
 
 
 
