@@ -373,15 +373,10 @@ Cuando se accede a datos de menos de cuatro bytes la alineación no es tan impor
 
 En el caso de la estructura `A` hemos intercalado campos `int` con `char`, de modo que el campo `int y`, se alinea a la siguiente posición múltiplo de cuatro, dejando tres posiciones libres después del campo `a`. Lo mismo pasa con el campo `b`.
 
--------------------------------------------------
-|0 |1 |2 |3 |4 |5 |6 |7 |8 |9 |10|11|12|13|14|15|
-|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
-|x          |a | vació  |y          |b | vació  |
--------------------------------------------------
-
+![ScreenShot](/imagenes/uno.png)
 
 En el caso de la estructura `B` hemos agrupado los campos de tipo `char` al final de la estructura, de modo que se aprovecha mejor el espacio, y sólo se desperdician los dos bytes sobrantes después de `b`.
-
+![ScreenShot](/imagenes/dos.png)
 
 
 
